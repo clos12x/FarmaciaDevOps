@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "FarmaciaDevOps.Controllers.MedicamentosController",
+    "Method": "Get",
+    "RelativePath": "api/Medicamentos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FarmaciaDevOps.Controllers.MedicamentosController",
+    "Method": "Post",
+    "RelativePath": "api/Medicamentos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicamento",
+        "Type": "FarmaciaDevOps.Models.Medicamento",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,6 @@
+@FarmaciaDevOps_HostAddress = http://localhost:5185
+
+GET {{FarmaciaDevOps_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
