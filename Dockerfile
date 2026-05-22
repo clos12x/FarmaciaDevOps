@@ -35,3 +35,7 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 ENTRYPOINT ["dotnet", "FarmaciaDevOps.dll"]
+
+COPY --from=publish /app/publish .
+
+ENTRYPOINT ["dotnet", "FarmaciaDevOps.dll"]
