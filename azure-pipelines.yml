@@ -10,11 +10,11 @@ steps:
     packageType: 'sdk'
     version: '10.x'
 
-- script: dotnet restore
+- script: dotnet restore ./FarmaciaDevOps/FarmaciaDevOps.csproj
   displayName: 'Restore dependencies'
 
-- script: dotnet build
+- script: dotnet build ./FarmaciaDevOps/FarmaciaDevOps.csproj
   displayName: 'Build project'
 
-- script: docker build -t farmacia-api .
+- script: docker build -t farmacia-api ./FarmaciaDevOps
   displayName: 'Construir imagen Docker'
