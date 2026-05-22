@@ -16,5 +16,5 @@ steps:
 - script: dotnet build ./FarmaciaDevOps/FarmaciaDevOps.csproj
   displayName: 'Build project'
 
-- script: docker build -t farmacia-api ./FarmaciaDevOps
+- script: docker build -t farmacia-api .
   displayName: 'Construir imagen Docker'
