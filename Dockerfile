@@ -13,28 +13,26 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # Copiar archivo del proyecto
-COPY ["FarmaciaDevOps.csproj", "./"]
+COPY ["FarmaciaDevOps/FarmaciaDevOps.csproj", "FarmaciaDevOps/"]
 
 # Restaurar dependencias
-RUN dotnet restore "./FarmaciaDevOps.csproj"
+RUN dotnet restore "FarmaciaDevOps/FarmaciaDevOps.csproj"
 
 # Copiar todo el proyecto
 COPY . .
 
 # Compilar proyecto
+WORKDIR "/src/FarmaciaDevOps"
 RUN dotnet build "FarmaciaDevOps.csproj" -c Release -o /app/build
 
 # Publicar aplicación
 FROM build AS publish
+WORKDIR "/src/FarmaciaDevOps"
 RUN dotnet publish "FarmaciaDevOps.csproj" -c Release -o /app/publish
 
 # Imagen final
 FROM base AS final
 WORKDIR /app
-
-COPY --from=publish /app/publish .
-
-ENTRYPOINT ["dotnet", "FarmaciaDevOps.dll"]
 
 COPY --from=publish /app/publish .
 
