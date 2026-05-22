@@ -1,20 +1,79 @@
+```yaml id="06ltjlwm"
 trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
-steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '10.x'
+stages:
 
-- script: dotnet restore ./FarmaciaDevOps/FarmaciaDevOps.csproj
-  displayName: 'Restore dependencies'
+# ====================================
+# STAGE 1 - CI
+# ====================================
+- stage: CI
+  displayName: 'Continuous Integration'
 
-- script: dotnet build ./FarmaciaDevOps/FarmaciaDevOps.csproj
-  displayName: 'Build project'
+  jobs:
+  - job: BuildJob
+    displayName: 'Build Application'
 
-- script: docker build -t farmacia-api .
-  displayName: 'Construir imagen Docker'
+    steps:
+
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '10.x'
+
+    - script: dotnet restore ./FarmaciaDevOps/FarmaciaDevOps.csproj
+      displayName: 'Restore Dependencies'
+
+    - script: dotnet build ./FarmaciaDevOps/FarmaciaDevOps.csproj --configuration Release
+      displayName: 'Build Project'
+
+# ====================================
+# STAGE 2 - TESTING
+# ====================================
+- stage: Testing
+  displayName: 'Testing Stage'
+  dependsOn: CI
+
+  jobs:
+  - job: TestJob
+    displayName: 'Run Unit Tests'
+
+    steps:
+
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '10.x'
+
+    - script: dotnet test ./FarmaciaDevOps.Tests/FarmaciaDevOps.Tests.csproj --configuration Release
+      displayName: 'Execute Unit Tests'
+
+# ====================================
+# STAGE 3 - DELIVERY
+# ====================================
+- stage: Delivery
+  displayName: 'Delivery Stage'
+  dependsOn: Testing
+
+  jobs:
+  - job: DeliveryJob
+    displayName: 'Publish Application'
+
+    steps:
+
+    - script: dotnet publish ./FarmaciaDevOps/FarmaciaDevOps.csproj -c Release -o publish
+      displayName: 'Publish Application'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: 'publish'
+        artifactName: 'drop'
+      displayName: 'Publish Artifacts'
+
+    - script: docker build -t farmacia-api .
+      displayName: 'Build Docker Image'
+```
+
