@@ -35,3 +35,4 @@ C:\Users\govoh\source\repos\FarmaciaDevOps\FarmaciaDevOps\obj\Debug\net10.0\ref\
 C:\Users\govoh\source\repos\FarmaciaDevOps\FarmaciaDevOps\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\govoh\source\repos\FarmaciaDevOps\FarmaciaDevOps\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\govoh\source\repos\FarmaciaDevOps\FarmaciaDevOps\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\govoh\source\repos\FarmaciaDevOps\FarmaciaDevOps\obj\Debug\net10.0\FarmaciaDevOps.sourcelink.json

@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="FarmaciaDevOps.Tests/FarmaciaDevOps.Tests.csproj" Id="64b93b83-8683-4c0e-ad8b-530ba2fed85d" />
   <Project Path="FarmaciaDevOps/FarmaciaDevOps.csproj" />
 </Solution>
